@@ -1,13 +1,26 @@
 import React from "react";
+
 import Components from "./component_creator";
 
+import Card from "./components/card/MyCard";
+
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "./App.css";
 
-class App extends React.Component {
-  render() {
-    const content = this.props.content;
-    return <div>{content.map(block => Components(block))}</div>;
-  }
-}
+export default function App(props) {
+  const rows = props.content;
 
-export default App;
+  return (
+    <Container>
+      {rows.map((rowItem, id) => (
+        <Row key={rowItem.rowID}>
+          {rowItem.cols.map((colItem, id) => (
+            <Col md={colItem.md} key={colItem.colID}>
+              <Card key={colItem.colID} item={colItem.componentID}></Card>
+            </Col>
+          ))}
+        </Row>
+      ))}
+    </Container>
+  );
+}

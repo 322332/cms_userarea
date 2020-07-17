@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
-function carousel(props) {
-  return <div> carousel</div>;
+
+
+export default function carousel() {
+  return (
+    <div>
+      burası carousel olacak
+    </div>
+  )
 }
-
-export default carousel;
