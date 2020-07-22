@@ -1,21 +1,16 @@
 import React, { Suspense } from "react";
 
+export default (block) => {
+  const Component = React.lazy(() =>
+    import(`${block.componentPath}`).then((x) => x)
+  );
 
-
-//lazy import modules
-
-export default block => {
-
-
-  const Component = React.lazy(() => import(`${block.path}`).then(x => x));
   if (typeof Component !== "undefined")
     return (
-      <Suspense key={block._uid} fallback={""}>        
-        <Component block={block} key={block._uid} />
+      <Suspense key={block.id} fallback={""}>
+        <Component id={block.id} block={block} />
       </Suspense>
     );
-
-
 
   return "bozuldu";
 };

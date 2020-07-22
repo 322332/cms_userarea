@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Components from "./component_creator";
 
-import Card from "./components/card/MyCard";
+import CompMatch from "./CompMatch";
 
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./App.css";
@@ -11,12 +11,15 @@ export default function App(props) {
   const rows = props.content;
 
   return (
-    <Container>
+    <Container fluid>
       {rows.map((rowItem, id) => (
         <Row key={rowItem.rowID}>
           {rowItem.cols.map((colItem, id) => (
             <Col md={colItem.md} key={colItem.colID}>
-              <Card key={colItem.colID} item={colItem.componentID}></Card>
+              <CompMatch
+                key={colItem.colID}
+                item={colItem.componentID}
+              ></CompMatch>
             </Col>
           ))}
         </Row>
